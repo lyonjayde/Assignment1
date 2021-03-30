@@ -11,18 +11,51 @@ library(janitor)
 ```
 
 
-When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
+Loading the data and looking at it to see what I might want to look at 
 
-```{r cars}
-summary(cars)
+```{r}
+
+complaints <- readRDS('complaints.rds')
+
+View(complaints)
+
 ```
 
-## Including Plots
 
-You can also embed plots, for example:
+First trend - most complaints
 
-```{r pressure, echo=FALSE}
-plot(pressure)
+```{r}
+
+# All of the data is from the year 2020
+
+most_complaints <- complaints %>% 
+ count(company) %>% 
+  arrange(desc(n))
+
+most_complaints
+
+#interesting that the top 3 companies w/ the most complaints are substantially more
+
+most_complaint_company<- complaints %>% 
+  filter(company == c('Experian Information Solutions Inc.', 'TRANSUNION INTERMEDIATE HOLDINGS, INC.', 'EQUIFAX, INC.'))
+
+most_complaint_company %>% 
+  count(company_public_response)
+
+most_complaint_company %>% 
+  filter(company_public_response == 'Company believes it acted appropriately as authorized by contract or law')
+
+most_complaint_company %>% 
+  count(company_response_to_consumer)
 ```
 
-Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
+
+Second trend
+
+```{r}
+
+
+```
+
+
+Third trend 
