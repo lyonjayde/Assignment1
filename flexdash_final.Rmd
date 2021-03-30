@@ -1,0 +1,50 @@
+---
+title: "2020 Complaints - Jayde Lyon"
+output: html_document
+  flexdashboard::flex_dashboard:
+    orientation: columns
+    vertical_layout: fill
+---
+
+```{r setup, include=FALSE}
+library(flexdashboard)
+library(tidyverse)
+library(plotly)
+library(janitor)
+
+```
+
+## 2020 Consumer Complaints
+
+
+Column {data-width=650}
+-----------------------------------------------------------------------
+
+### Top 5 Companies with Most Complaints in 2020
+
+```{r}
+top5_complaints <- most_complaints %>% 
+  top_n(5)
+
+plot_ly(data= top5_complaints, x = ~company, y = ~n, type = 'bar') %>% 
+  layout(title = "Most Complaints in 2020",
+         xaxis = list(title = "Company"),
+         yaxis = list (title = "Number of Complaints"))
+
+```
+
+Column {data-width=350}
+-----------------------------------------------------------------------
+
+### Chart B
+
+```{r}
+
+```
+
+### Chart C
+
+```{r}
+
+```
+
