@@ -26,11 +26,12 @@ Column {data-width=650}
 top5_complaints <- most_complaints %>% 
   top_n(5)
 
-plot_ly(data= top5_complaints, x = ~company, y = ~n, type = 'bar') %>% 
+top5_complaints_chart <- plot_ly(data= top5_complaints, x = ~company, y = ~n, type = 'bar') %>% 
   layout(title = "Most Complaints in 2020",
          xaxis = list(title = "Company"),
          yaxis = list (title = "Number of Complaints"))
 
+top5_complaints_chart
 ```
 
 Column {data-width=350}
@@ -62,6 +63,19 @@ isolated_chart
 ### Chart C
 
 ```{r}
+
+covid_complaint_months <- complaints %>% 
+  filter(str_detect(consumer_complaint_narrative, variations)) %>% 
+  count(mm_yy_sent_to_company)
+
+covid_complaint_months
+
+covid_complaint_chart <- plot_ly(data= covid_complaint_months, x = ~mm_yy_sent_to_company, y = ~n, type = 'bar') %>% 
+  layout(title = "Covid Related Complaints",
+         xaxis = list(title = "Month Sent"),
+         yaxis = list (title = "Number of Complaints"))
+
+covid_complaint_chart
 
 ```
 

@@ -34,10 +34,17 @@ most_complaints <- complaints %>%
 
 most_complaints
 
+top_3 <- c('Experian Information Solutions Inc.', 'TRANSUNION INTERMEDIATE HOLDINGS, INC.', 'EQUIFAX, INC.')
+
 #interesting that the top 3 companies w/ the most complaints are substantially more
 
 most_complaint_company<- complaints %>% 
-  filter(company == c('Experian Information Solutions Inc.', 'TRANSUNION INTERMEDIATE HOLDINGS, INC.', 'EQUIFAX, INC.'))
+  filter(company == top_3)
+
+most_complaint_company
+
+complaints %>% 
+  filter(company != top_3)
 
 ```
 
