@@ -11,6 +11,15 @@ library(flexdashboard)
 library(tidyverse)
 library(plotly)
 library(janitor)
+library(rmarkdown)
+
+complaints <- readRDS('complaints.rds')
+
+most_complaints <- complaints %>% 
+ count(company) %>% 
+  arrange(desc(n))
+
+variations <- c('coronavirus', 'CORONAVIRUS', 'covid','COVID')
 
 ```
 
@@ -28,8 +37,8 @@ top5_complaints <- most_complaints %>%
 
 top5_complaints_chart <- plot_ly(data= top5_complaints, x = ~company, y = ~n, type = 'bar') %>% 
   layout(title = "Most Complaints in 2020",
-         xaxis = list(title = "Company"),
-         yaxis = list (title = "Number of Complaints"))
+        xaxis = list(title = "Company"),
+        yaxis = list (title = "Number of Complaints"))
 
 top5_complaints_chart
 ```
