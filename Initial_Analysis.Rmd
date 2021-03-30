@@ -39,6 +39,15 @@ most_complaints
 most_complaint_company<- complaints %>% 
   filter(company == c('Experian Information Solutions Inc.', 'TRANSUNION INTERMEDIATE HOLDINGS, INC.', 'EQUIFAX, INC.'))
 
+```
+
+
+Second trend
+
+```{r}
+
+# As noted in my second commit, is it more newsworthy that the top three tended to not give public responses - or the fewer that did
+
 most_complaint_company %>% 
   count(company_public_response)
 
@@ -47,15 +56,52 @@ most_complaint_company %>%
 
 most_complaint_company %>% 
   count(company_response_to_consumer)
+
+complaints %>% 
+  count(company_public_response) %>% 
+  arrange(desc(n))
+
+
+```
+
+I kind of went off on a tangent here
+
+```{r}
+
+complaints %>% 
+  filter(company_public_response == 'Company believes complaint is the result of an isolated error') %>% 
+  count(issue, company) %>% 
+  arrange(desc(n))
+
+#above could be interesting because although saying isolate incident, the top issues are common and not isolated within the single company 
+
+head(complaints)
+
+complaints %>% 
+  select(issue, sub_issue, consumer_complaint_narrative, company_public_response, company) %>% 
+  filter(company_public_response == 'Company believes complaint is the result of an isolated error', company == 'Shellpoint Partners, LLC', 
+         issue == 'Trouble during payment process')
+
+complaints %>% 
+  select(issue, sub_issue, consumer_complaint_narrative, company_public_response, company) %>% 
+  filter(company == 'Shellpoint Partners, LLC', 
+         issue == 'Trouble during payment process') %>% 
+  count(company_public_response) %>% 
+  arrange(desc(n))
+
+complaints %>% 
+  filter(company == 'Shellpoint Partners, LLC') %>% 
+  count(issue) %>% 
+  arrange(desc(n))
+
 ```
 
 
-Second trend
+Third trend - COVID 
 
 ```{r}
 
 
+
 ```
 
-
-Third trend 
