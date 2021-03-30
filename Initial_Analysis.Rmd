@@ -101,7 +101,28 @@ Third trend - COVID
 
 ```{r}
 
+# Yes, this is tedious, however the str_to_lower isn't working for me. So, I will filter each one, name them and then combine
 
+variations <- c('coronavirus', 'CORONAVIRUS', 'covid','COVID')
+
+# complaints %>% 
+#   select(consumer_complaint_narrative) %>% 
+#   filter(str_detect(consumer_complaint_narrative, 'coronavirus'))
+# 
+# complaints %>% 
+#   select(consumer_complaint_narrative) %>% 
+#   filter(str_detect(consumer_complaint_narrative, 'CORONAVIRUS'))
+# 
+# complaints %>% 
+#   select(consumer_complaint_narrative) %>% 
+#   filter(str_detect(consumer_complaint_narrative, 'covid'))
+# 
+# complaints %>% 
+#   select(consumer_complaint_narrative) %>% 
+#   filter(str_detect(consumer_complaint_narrative, 'COVID'))
+
+complaints %>% 
+  filter(str_detect(consumer_complaint_narrative, variations))
 
 ```
 
