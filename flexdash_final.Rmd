@@ -36,9 +36,26 @@ plot_ly(data= top5_complaints, x = ~company, y = ~n, type = 'bar') %>%
 Column {data-width=350}
 -----------------------------------------------------------------------
 
-### Chart B
+### Correlation Between Issues and the Company Saying it is Isolated
 
 ```{r}
+
+isolated <- complaints %>% 
+  filter(company_public_response == 'Company believes complaint is the result of an isolated error') 
+
+
+isolated
+
+isolated_chart <- plot_ly(data = isolated, x = ~issue, y = ~company_public_response,
+        marker = list(size = 10,
+                             color = 'blue',
+                             line = list(color = 'blue',
+                                         width = .5))) %>% 
+  layout(title = "Issue v. Isolated Error",
+         xaxis = list(title = "Issue"),
+         yaxis = list (title = "Number of Complaints"))
+
+isolated_chart
 
 ```
 
